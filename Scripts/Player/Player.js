@@ -3,11 +3,12 @@ class Player
 {
     constructor(socket)
     {
+        console.log("Player + constructor")
         this.socket = socket;
     }
     init()
     {
-        console.log("Player init "+this.state );
+        console.log("Player + init");
         var newAuth = new Auth.Authentication(this.socket);
         newAuth.init(); 
     }

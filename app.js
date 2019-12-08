@@ -6,6 +6,7 @@ var player = MyPlayer.Player;
 //connection
 io.on('connection',function(socket){
     console.log("Server Connection Established");
+    socket.emit('connection'); // emit connection to tell connection Establised
     var newPlayer = new player(socket); //player creation
     newPlayer.init();
     //socket.emit('connection',{"Id":100});
