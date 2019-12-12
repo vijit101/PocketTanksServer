@@ -5,6 +5,7 @@ class Player
     {
         console.log("Player + constructor")
         this.socket = socket;
+        
     }
     init()
     {

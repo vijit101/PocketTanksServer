@@ -16,13 +16,13 @@ class Authentication{
             if(Data['PlayerID'] == 0)
             {
                 console.log("check from onAuth")
-                this.PlayerID = Data['PlayerID'];
-                this.socket.emit(EventStrings.AuthenticationResponse)
+                this.PlayerID = Math.ceil(Math.random()*100+1);             
+                this.socket.emit(EventStrings.AuthenticationResponse,{"PlayerID":this.PlayerID});
             }
             else
             {
-                this.PlayerID = Math.ceil(Math.random()*100);
-                this.socket.emit(EventStrings.AuthenticationResponse)
+                this.PlayerID = Data['PlayerID'];
+                this.socket.emit(EventStrings.AuthenticationResponse,{"PlayerID":""});
             }
         })
         console.log("Authentication + init "+this.state );
