@@ -1,5 +1,7 @@
 const EventStrings = {
     AuthenticationRequest : "AuthenticationRequest",
-    AuthenticationResponse : "AuthenticationResponse"
+    AuthenticationResponse : "AuthenticationResponse",
+    AuthenticationSuccess : "AuthenticationSuccess",
+    StartMatchMaking:"StartMatchMaking"
 }
 module.exports = {EventStrings:EventStrings};

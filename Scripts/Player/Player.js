@@ -1,4 +1,7 @@
 var Auth = require('./../Authentication/Authentication');
+var EStrings = require('../Enums/EventStrings');
+var MatchMakingInstance = require('./../MatchMaking/MatchMaking').MatchMakingInstance;
+var EventStrings = EStrings.EventStrings;
 class Player
 {
     constructor(socket)
@@ -9,9 +12,19 @@ class Player
     }
     init()
     {
-        console.log("Player + init");
-        var newAuth = new Auth.Authentication(this.socket);
+
+        this.socket.on(EventStrings.StartMatchMaking,()=>{
+            console.log("Player + StartMatchMaking");
+            this.BeginMatchMaking();
+
+        });
+        var newAuth = new Auth.Authentication(this.socket); 
         newAuth.init(); 
+        
+    }
+
+    BeginMatchMaking(){
+        MatchMakingInstance.getInstance().AddPlayerToQueue(this);
     }
     
 }

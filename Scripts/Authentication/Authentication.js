@@ -27,22 +27,6 @@ class Authentication{
         })
         console.log("Authentication + init "+this.state );
     }
-    OnAuthRequest(Data)
-    {
-        this.state = AuthState.Auth_Progress;
-        console.log("AuthenticationRequest + Authentication + OnAuthRequest "+this.state + Data['PlayerID']);
-        if(Data['PlayerID'] == 0)
-        {
-            console.log("check from onAuth")
-            this.PlayerID = Data['PlayerID'];
-            this.socket.emit(EventStrings.AuthenticationResponse)
-        }
-        else
-        {
-            this.PlayerID = Math.ceil(Math.random()*100);
-            this.socket.emit(EventStrings.AuthenticationResponse)
-        }
-    }
 
     OnAuthFailed()
     {
