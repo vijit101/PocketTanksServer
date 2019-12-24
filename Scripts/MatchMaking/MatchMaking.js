@@ -7,8 +7,8 @@ var MatchMakingInstance = (function () {
     var instance;
  
     function createInstance() {
-        var object = new MatchMaking();
-        return object;
+        var obj = new MatchMaking();
+        return obj;
     }
  
     return {

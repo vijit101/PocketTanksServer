@@ -26,6 +26,8 @@ class Player
     BeginMatchMaking(){
         MatchMakingInstance.getInstance().AddPlayerToQueue(this);
     }
-    
+    getSocket(){
+        return this.socket;
+    }
 }
 module.exports = {Player:Player};

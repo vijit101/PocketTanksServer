@@ -1,3 +1,4 @@
+var EventStrings = require('../Enums/EventStrings').EventStrings;
 class GamePlay
 {
     constructor(player1,player2){
@@ -11,8 +12,16 @@ class GamePlay
         var roomId = Math.ceil(Math.random()*100+1);
         this.player1.socket.join(roomId);
         this.player2.socket.join(roomId);
-        console.log("GamePlay + JoinedRoom");
+        console.log("GamePlay + JoinedRoom "+roomId);
+        //this.player1.socket.emit(EventStrings.StartGamePlay);
+        //this.player2.socket.emit(EventStrings.StartGamePlay);
+        this.BroadcastEmitToPlayers(EventStrings.StartGamePlay);
+        console.log("GamePlay + emit "+EventStrings.StartGamePlay);
 
+    }
+    BroadcastEmitToPlayers(eventStr){
+        this.player1.socket.emit(eventStr);
+        this.player2.socket.emit(eventStr);
     }    
 }
 module.exports = {GamePlay:GamePlay};
