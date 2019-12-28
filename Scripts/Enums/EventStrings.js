@@ -3,6 +3,9 @@ const EventStrings = {
     AuthenticationResponse : "AuthenticationResponse",
     AuthenticationSuccess : "AuthenticationSuccess",
     StartMatchMaking:"StartMatchMaking",
-    StartGamePlay : "StartGamePlay"
+    StartGamePlay : "StartGamePlay",
+    OnGameSetup : "OnGameSetup",
+    OnDisablePlayer : "OnDisablePlayer",
+    OnEnablePlayer : "OnEnablePlayer"
 }
 module.exports = {EventStrings:EventStrings};

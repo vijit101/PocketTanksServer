@@ -15,13 +15,13 @@ class GamePlay
         console.log("GamePlay + JoinedRoom "+roomId);
         //this.player1.socket.emit(EventStrings.StartGamePlay);
         //this.player2.socket.emit(EventStrings.StartGamePlay);
-        this.BroadcastEmitToPlayers(EventStrings.StartGamePlay);
         console.log("GamePlay + emit "+EventStrings.StartGamePlay);
-
+        this.BroadcastEmitToPlayers(EventStrings.StartGamePlay);
+        
     }
     BroadcastEmitToPlayers(eventStr){
-        this.player1.socket.emit(eventStr);
-        this.player2.socket.emit(eventStr);
-    }    
+        this.player1.socket.emit(eventStr,{"Enable":true});
+        this.player2.socket.emit(eventStr,{"Enable":false});
+    }        
 }
 module.exports = {GamePlay:GamePlay};
