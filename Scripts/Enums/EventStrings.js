@@ -6,6 +6,10 @@ const EventStrings = {
     StartGamePlay : "StartGamePlay",
     OnGameSetup : "OnGameSetup",
     OnDisablePlayer : "OnDisablePlayer",
-    OnEnablePlayer : "OnEnablePlayer"
+    OnEnablePlayer : "OnEnablePlayer",
+    FireGamePlayData : "FireGamePlayData",
+    FireFromPlayer1 :"FireFromPlayer1",
+    FireFromPlayer2 : "FireFromPlayer2"
+
 }
 module.exports = {EventStrings:EventStrings};

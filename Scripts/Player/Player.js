@@ -8,6 +8,7 @@ class Player
     {
         console.log("Player + constructor")
         this.socket = socket;
+        this.Enable = false;
         
     }
     init()

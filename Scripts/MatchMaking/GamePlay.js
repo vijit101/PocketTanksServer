@@ -16,12 +16,35 @@ class GamePlay
         //this.player1.socket.emit(EventStrings.StartGamePlay);
         //this.player2.socket.emit(EventStrings.StartGamePlay);
         console.log("GamePlay + emit "+EventStrings.StartGamePlay);
-        this.BroadcastEmitToPlayers(EventStrings.StartGamePlay);
+        this.player2.Enable = true;
+        this.ChangeEnableStatus(this.player1.Enable,this.player2.Enable);
+        this.BroadcastEmitToPlayers(EventStrings.StartGamePlay,{"Enable":this.player1.Enable},{"Enable":this.player2.Enable});
+        this.OnListentoFireEvt(EventStrings.FireGamePlayData);
         
     }
-    BroadcastEmitToPlayers(eventStr){
-        this.player1.socket.emit(eventStr,{"Enable":true});
-        this.player2.socket.emit(eventStr,{"Enable":false});
-    }        
+    ChangeEnableStatus(p1enable,p2enable){
+        //console.log("Enabled p1 "+this.player1.Enable+"Enabled p2 "+this.player2.Enable);
+        this.player1.Enable = !this.player1.Enable;
+        this.player2.Enable = !this.player2.Enable;
+        //console.log("Enabled p1 "+this.player1.Enable+"Enabled p2 "+this.player2.Enable);
+    }
+    BroadcastEmitToPlayers(eventStr,jsonobjp1,jsonobjp2){
+        this.player1.socket.emit(eventStr,jsonobjp1);
+        this.player2.socket.emit(eventStr,jsonobjp2);
+    }
+
+    OnListentoFireEvt(evtString){
+        this.player1.socket.on(evtString,(FireDataP1)=>{
+        this.ChangeEnableStatus(this.player1.Enable,this.player2.Enable);
+        console.log("FireDataP1 "+FireDataP1['powerSlider']);
+        this.player2.socket.emit(EventStrings.FireFromPlayer1,{"powerSlider":FireDataP1['powerSlider'],"angleSlider":FireDataP1['angleSlider']});
+        this.BroadcastEmitToPlayers(EventStrings.StartGamePlay,{"Enable":this.player1.Enable},{"Enable":this.player2.Enable});})
+        this.player2.socket.on(evtString,(FireDataP2)=>{
+        this.ChangeEnableStatus(this.player1.Enable,this.player2.Enable);
+        console.log("FireDataP2 "+FireDataP2['powerSlider']);
+        this.player1.socket.emit(EventStrings.FireFromPlayer2,{"powerSlider":FireDataP2['powerSlider'],"angleSlider":FireDataP2['angleSlider']});
+        this.BroadcastEmitToPlayers(EventStrings.StartGamePlay,{"Enable":this.player1.Enable},{"Enable":this.player2.Enable});})
+    }
+
 }
 module.exports = {GamePlay:GamePlay};
