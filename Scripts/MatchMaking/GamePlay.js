@@ -36,15 +36,14 @@ class GamePlay
     OnListentoFireEvt(evtString){
         this.player1.socket.on(evtString,(FireDataP1)=>{
         this.ChangeEnableStatus(this.player1.Enable,this.player2.Enable);
-        console.log("FireDataP1 "+FireDataP1['powerSlider']);
-        this.player2.socket.emit(EventStrings.FireFromPlayer1,{"powerSlider":FireDataP1['powerSlider'],"angleSlider":FireDataP1['angleSlider']});
+        console.log("FireDataP1 "+FireDataP1['powerSlider']+" " + FireDataP1['playerHealth1']);
+        this.player2.socket.emit(EventStrings.FireFromPlayer1,{"powerSlider":FireDataP1['powerSlider'],"angleSlider":FireDataP1['angleSlider'],"playerHealth1":FireDataP1['playerHealth1'],"playerHealth2":FireDataP1['playerHealth2']});
         this.BroadcastEmitToPlayers(EventStrings.StartGamePlay,{"Enable":this.player1.Enable},{"Enable":this.player2.Enable});})
         this.player2.socket.on(evtString,(FireDataP2)=>{
         this.ChangeEnableStatus(this.player1.Enable,this.player2.Enable);
         console.log("FireDataP2 "+FireDataP2['powerSlider']);
-        this.player1.socket.emit(EventStrings.FireFromPlayer2,{"powerSlider":FireDataP2['powerSlider'],"angleSlider":FireDataP2['angleSlider']});
+        this.player1.socket.emit(EventStrings.FireFromPlayer2,{"powerSlider":FireDataP2['powerSlider'],"angleSlider":FireDataP2['angleSlider'],"playerHealth1":FireDataP2['playerHealth1'],"playerHealth2":FireDataP2['playerHealth2']});
         this.BroadcastEmitToPlayers(EventStrings.StartGamePlay,{"Enable":this.player1.Enable},{"Enable":this.player2.Enable});})
     }
-
 }
 module.exports = {GamePlay:GamePlay};
