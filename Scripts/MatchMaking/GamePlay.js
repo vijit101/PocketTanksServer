@@ -20,7 +20,7 @@ class GamePlay
         this.ChangeEnableStatus(this.player1.Enable,this.player2.Enable);
         this.BroadcastEmitToPlayers(EventStrings.StartGamePlay,{"Enable":this.player1.Enable},{"Enable":this.player2.Enable});
         this.OnListentoFireEvt(EventStrings.FireGamePlayData);
-        
+        this.OnListenToHealthEvent(EventStrings.EmitHealthData);
     }
     ChangeEnableStatus(p1enable,p2enable){
         //console.log("Enabled p1 "+this.player1.Enable+"Enabled p2 "+this.player2.Enable);
@@ -36,14 +36,23 @@ class GamePlay
     OnListentoFireEvt(evtString){
         this.player1.socket.on(evtString,(FireDataP1)=>{
         this.ChangeEnableStatus(this.player1.Enable,this.player2.Enable);
-        console.log("FireDataP1 "+FireDataP1['powerSlider']+" " + FireDataP1['playerHealth1']);
-        this.player2.socket.emit(EventStrings.FireFromPlayer1,{"powerSlider":FireDataP1['powerSlider'],"angleSlider":FireDataP1['angleSlider'],"playerHealth1":FireDataP1['playerHealth1'],"playerHealth2":FireDataP1['playerHealth2']});
+        console.log("FireDataP1 "+FireDataP1['powerSlider']);
+        this.player2.socket.emit(EventStrings.FireFromPlayer1,{"powerSlider":FireDataP1['powerSlider'],"angleSlider":FireDataP1['angleSlider']});
         this.BroadcastEmitToPlayers(EventStrings.StartGamePlay,{"Enable":this.player1.Enable},{"Enable":this.player2.Enable});})
         this.player2.socket.on(evtString,(FireDataP2)=>{
         this.ChangeEnableStatus(this.player1.Enable,this.player2.Enable);
         console.log("FireDataP2 "+FireDataP2['powerSlider']);
-        this.player1.socket.emit(EventStrings.FireFromPlayer2,{"powerSlider":FireDataP2['powerSlider'],"angleSlider":FireDataP2['angleSlider'],"playerHealth1":FireDataP2['playerHealth1'],"playerHealth2":FireDataP2['playerHealth2']});
+        this.player1.socket.emit(EventStrings.FireFromPlayer2,{"powerSlider":FireDataP2['powerSlider'],"angleSlider":FireDataP2['angleSlider']});
         this.BroadcastEmitToPlayers(EventStrings.StartGamePlay,{"Enable":this.player1.Enable},{"Enable":this.player2.Enable});})
+    }
+
+    OnListenToHealthEvent(evtString){
+        this.player1.socket.on(evtString,(HealthDataP1)=>{
+            console.log("HealthDataP1 "+HealthDataP1['playerHealth']+" Player"+HealthDataP1['PlayerPriorityServer']);
+        });
+        this.player2.socket.on(evtString,(HealthDataP2)=>{
+            console.log("HealthDataP2 "+HealthDataP2['playerHealth']+" Player"+HealthDataP2['PlayerPriorityServer']);
+        });
     }
 }
 module.exports = {GamePlay:GamePlay};

@@ -9,7 +9,9 @@ const EventStrings = {
     OnEnablePlayer : "OnEnablePlayer",
     FireGamePlayData : "FireGamePlayData",
     FireFromPlayer1 :"FireFromPlayer1",
-    FireFromPlayer2 : "FireFromPlayer2"
+    FireFromPlayer2 : "FireFromPlayer2",
+    EmitHealthData : "EmitHealthData",
+    PlayerPriorityServer : "PlayerPriorityServer"
 
 }
 module.exports = {EventStrings:EventStrings};
