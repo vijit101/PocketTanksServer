@@ -11,7 +11,8 @@ const EventStrings = {
     FireFromPlayer1 :"FireFromPlayer1",
     FireFromPlayer2 : "FireFromPlayer2",
     EmitHealthData : "EmitHealthData",
-    PlayerPriorityServer : "PlayerPriorityServer"
-
+    PlayerPriorityServer : "PlayerPriorityServer",
+    HealthFromP1 :"HealthFromP1",
+    HealthFromP2 :"HealthFromP2"
 }
 module.exports = {EventStrings:EventStrings};
