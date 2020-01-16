@@ -48,10 +48,10 @@ class GamePlay
 
     OnListenToHealthEvent(evtString){
         this.player1.socket.on(evtString,(HealthDataP1)=>{
-            console.log("HealthDataP1 "+HealthDataP1['playerHealth']+" Player"+HealthDataP1['PlayerPriorityServer']);
+            console.log("P1 HealthDataP1 "+HealthDataP1['playerHealth1']+" Player2"+HealthDataP1['playerHealth2']);
         });
         this.player2.socket.on(evtString,(HealthDataP2)=>{
-            console.log("HealthDataP2 "+HealthDataP2['playerHealth']+" Player"+HealthDataP2['PlayerPriorityServer']);
+            console.log("P2 HealthDataP1 "+HealthDataP2['playerHealth1']+" Player2"+HealthDataP2['playerHealth2']);
         });
     }
 }
