@@ -14,7 +14,5 @@ const EventStrings = {
     PlayerPriorityServer : "PlayerPriorityServer",
     HealthFromP1 :"HealthFromP1",
     HealthFromP2 :"HealthFromP2",
-    OnDeath:"OnDeath",
-    GameOver:"GameOver"
 }
 module.exports = {EventStrings:EventStrings};
