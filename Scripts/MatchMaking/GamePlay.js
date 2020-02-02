@@ -19,7 +19,6 @@ class GamePlay
         this.BroadcastEmitToPlayers(EventStrings.StartGamePlay,{"Enable":this.player1.Enable},{"Enable":this.player2.Enable});
         this.OnListentoFireEvt(EventStrings.FireGamePlayData);
         this.OnListenToHealthEvent(EventStrings.EmitHealthData);
-        //this.OnListenToDeathEvent(EventStrings.OnDeath);
     }
     ChangeEnableStatus(p1enable,p2enable){
         //console.log("Enabled p1 "+this.player1.Enable+"Enabled p2 "+this.player2.Enable);
@@ -56,15 +55,5 @@ class GamePlay
         });
     }
 
-    OnListenToDeathEvent(evtString){
-        this.player1.socket.on(evtString,(playerDeathData1)=>{
-            console.log("1"+playerDeathData1['playerDead']);
-            this.player1.socket.emit(EventStrings.GameOver,playerDeathData1);
-        });
-        this.player2.socket.on(evtString,(playerDeathData2)=>{
-            console.log("2"+playerDeathData2['playerDead']);
-            this.player2.socket.emit(EventStrings.GameOver,playerDeathData2);
-        });
-    }
 }
 module.exports = {GamePlay:GamePlay};
