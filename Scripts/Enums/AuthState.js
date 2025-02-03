@@ -8,3 +8,5 @@ const AuthState = {
 
 }
 module.exports = {AuthState:AuthState};
+
+// implemented enums to manage the pseudo state machine used and it also saves me time writing the strigns again and again apart from it makes it more reliable for my team mate to read it 
