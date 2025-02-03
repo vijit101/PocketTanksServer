@@ -18,7 +18,15 @@ class Authentication{
                 console.log("check from onAuth")
                 this.PlayerID = Math.ceil(Math.random()*100+1);             
                 this.socket.emit(EventStrings.AuthenticationResponse,{"PlayerID":this.PlayerID});
+                // this.onAuthSuccess();
             }
+//else if (typeof Data['PlayerID'] !== "number" || Data['PlayerID'] < 0) {
+            //console.log("Authentication failed: Invalid PlayerID");
+            //this.socket.emit(EventStrings.AuthenticationResponse, { "PlayerID": "" });
+
+            // Call failure function for invalid credentials
+            //this.OnAuthFailed();  
+        //} 
             else
             {
                 this.PlayerID = Data['PlayerID'];
