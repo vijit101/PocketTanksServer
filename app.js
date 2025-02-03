@@ -16,3 +16,5 @@ io.on('connection',function(socket){
 server.listen(3000,"127.0.0.1",function(){
     console.log("Listening")
 });
+
+// start point goes from this to player then auth and player checks if matchmaking event fired if yes then go to the gameplay 
